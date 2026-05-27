@@ -1,0 +1,3 @@
+@tailwind base;@tailwind components;@tailwind utilities;
+body{@apply bg-[#090d1a] text-white}
+.container{@apply max-w-6xl mx-auto px-4}

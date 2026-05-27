@@ -1,0 +1,2 @@
+async function getProduct(id:string){const r=await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products/${id}`,{cache:'no-store'});return r.json();}
+export default async function Product({params}:{params:{id:string}}){const p=await getProduct(params.id);return <main className='container py-8'><h1 className='text-3xl'>{p.name}</h1><p className='text-cyan-400 text-xl mt-2'>${p.price}</p><pre className='mt-4 bg-slate-900 p-4 rounded'>{JSON.stringify(p.specs,null,2)}</pre></main>}

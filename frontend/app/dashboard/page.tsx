@@ -1,1 +1,8 @@
-export default function Page(){return <main className='container py-8'><h1 className='text-3xl capitalize'>dashboard</h1><p className='text-slate-300 mt-2'>This page is scaffolded and ready for full feature integration.</p></main>}
+export default function DashboardPage() {
+  return (
+    <section className="card">
+      <h1 className="text-3xl font-bold capitalize">dashboard</h1>
+      <p className="text-blue-200 mt-3">dashboard page content for TechForge ecommerce.</p>
+    </section>
+  )
+}

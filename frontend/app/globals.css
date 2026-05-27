@@ -1,3 +1,11 @@
-@tailwind base;@tailwind components;@tailwind utilities;
-body{@apply bg-[#090d1a] text-white}
-.container{@apply max-w-6xl mx-auto px-4}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-abyss text-white;
+}
+
+.card {
+  @apply bg-midnight border border-blue-900 rounded-xl p-4 hover:scale-[1.02] transition;
+}

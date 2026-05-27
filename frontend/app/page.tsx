@@ -1,2 +1,11 @@
-import Link from 'next/link';
-export default function Home(){return <main className='container py-16'><section className='bg-gradient-to-r from-slate-900 to-blue-950 p-10 rounded-xl'><h1 className='text-4xl font-bold'>Build Your Dream PC</h1><p className='mt-3 text-slate-300'>Premium RAM, SSDs, GPUs and accessories.</p><Link href='/shop' className='mt-5 inline-block bg-cyan-500 px-5 py-2 rounded'>Shop Now</Link></section></main>}
+import Link from 'next/link'
+
+export default function HomePage() {
+  return (
+    <section className="py-20 text-center">
+      <h1 className="text-5xl font-bold mb-4">Elite PC Hardware</h1>
+      <p className="text-blue-200 mb-8">RAM, SSD, HDD, GPUs, CPUs and more.</p>
+      <Link href="/shop" className="bg-blue-600 px-6 py-3 rounded-lg">Start Shopping</Link>
+    </section>
+  )
+}

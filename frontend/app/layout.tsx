@@ -1,2 +1,18 @@
-import './globals.css'; import Navbar from '@/components/Navbar';
-export default function RootLayout({children}:{children:React.ReactNode}){return <html><body><Navbar/>{children}</body></html>}
+import './globals.css'
+import Navbar from '@/components/Navbar'
+
+export const metadata = {
+  title: 'TechForge Store',
+  description: 'Gaming hardware ecommerce platform'
+}
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body>
+        <Navbar />
+        <main className="max-w-6xl mx-auto p-4">{children}</main>
+      </body>
+    </html>
+  )
+}

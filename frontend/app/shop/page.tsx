@@ -4,7 +4,6 @@ type Product = {
   id: string;
   name: string;
   price: number;
-  image?: string;
 };
 
 async function getProducts(): Promise<Product[]> {
@@ -40,14 +39,6 @@ export default async function ShopPage() {
               key={p.id}
               className="bg-slate-900 p-5 rounded-xl border border-slate-700"
             >
-              {p.image && (
-                <img
-                  src={p.image}
-                  alt={p.name}
-                  className="w-full h-48 object-cover rounded-lg mb-4"
-                />
-              )}
-
               <h2 className="text-xl font-semibold text-white">
                 {p.name}
               </h2>
@@ -55,13 +46,6 @@ export default async function ShopPage() {
               <p className="text-cyan-400 mt-2 text-lg">
                 ${p.price}
               </p>
-
-              <a
-                href={`/product/${p.id}`}
-                className="inline-block mt-4 text-sm text-cyan-300"
-              >
-                View Product →
-              </a>
             </div>
           ))}
         </div>

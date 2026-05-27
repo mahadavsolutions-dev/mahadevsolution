@@ -1,26 +1,12 @@
 import { supabase } from "@/lib/supabase";
 
-type Product = {
-  id: string;
-  name: string;
-  price: number;
-};
-
-async function getProducts(): Promise<Product[]> {
+export default async function ShopPage() {
   const { data, error } = await supabase
     .from("products")
     .select("*");
 
-  if (error) {
-    console.error(error);
-    return [];
-  }
-
-  return data || [];
-}
-
-export default async function ShopPage() {
-  const products = await getProducts();
+  console.log("DATA:", data);
+  console.log("ERROR:", error);
 
   return (
     <main className="container mx-auto py-10 px-4">
@@ -28,28 +14,9 @@ export default async function ShopPage() {
         Computer Parts Shop
       </h1>
 
-      {products.length === 0 ? (
-        <div className="text-red-400">
-          No products found.
-        </div>
-      ) : (
-        <div className="grid md:grid-cols-3 gap-6">
-          {products.map((p) => (
-            <div
-              key={p.id}
-              className="bg-slate-900 p-5 rounded-xl border border-slate-700"
-            >
-              <h2 className="text-xl font-semibold text-white">
-                {p.name}
-              </h2>
-
-              <p className="text-cyan-400 mt-2 text-lg">
-                ${p.price}
-              </p>
-            </div>
-          ))}
-        </div>
-      )}
+      <pre className="text-white">
+        {JSON.stringify({ data, error }, null, 2)}
+      </pre>
     </main>
   );
 }

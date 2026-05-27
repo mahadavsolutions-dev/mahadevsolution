@@ -1,30 +1,23 @@
+import { supabase } from "@/lib/supabase";
+
 type Product = {
-  _id: string;
+  id: string;
   name: string;
   price: number;
+  image?: string;
 };
 
 async function getProducts(): Promise<Product[]> {
-  try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/products`,
-      {
-        cache: "no-store",
-      }
-    );
+  const { data, error } = await supabase
+    .from("products")
+    .select("*");
 
-    if (!res.ok) {
-      console.error("API Error:", res.status);
-      return [];
-    }
-
-    const data = await res.json();
-
-    return Array.isArray(data) ? data : [];
-  } catch (error) {
-    console.error("Fetch failed:", error);
+  if (error) {
+    console.error(error);
     return [];
   }
+
+  return data || [];
 }
 
 export default async function ShopPage() {
@@ -38,15 +31,23 @@ export default async function ShopPage() {
 
       {products.length === 0 ? (
         <div className="text-red-400">
-          No products found or backend not connected.
+          No products found.
         </div>
       ) : (
         <div className="grid md:grid-cols-3 gap-6">
           {products.map((p) => (
             <div
-              key={p._id}
+              key={p.id}
               className="bg-slate-900 p-5 rounded-xl border border-slate-700"
             >
+              {p.image && (
+                <img
+                  src={p.image}
+                  alt={p.name}
+                  className="w-full h-48 object-cover rounded-lg mb-4"
+                />
+              )}
+
               <h2 className="text-xl font-semibold text-white">
                 {p.name}
               </h2>
@@ -56,7 +57,7 @@ export default async function ShopPage() {
               </p>
 
               <a
-                href={`/product/${p._id}`}
+                href={`/product/${p.id}`}
                 className="inline-block mt-4 text-sm text-cyan-300"
               >
                 View Product →
